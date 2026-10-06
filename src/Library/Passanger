@@ -1,0 +1,22 @@
+using DiscordPublisher;
+
+public class Passenger : Person
+{
+    public double Calificacion { get; set; }
+    public string Foto { get; set; }
+
+    public Passenger(string name, string lastname, string id, string foto) 
+        : base(name, lastname, id)
+    {
+        Foto = foto;
+        Calificacion = 5.0;
+    }
+
+    public void Welcome()
+    {
+        DiscordClient client = new DiscordClient();
+        // Publica la foto de perfil con su nombre
+        string mensaje = $"¡Bienvenid@ a UCURide, pasajer@ {Name} {Lastname}!";
+        client.PostNotification(mensaje, Foto);
+    }
+}

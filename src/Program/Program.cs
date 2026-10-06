@@ -21,12 +21,6 @@ namespace Ucu.Poo.RideShare
         /// </summary>
         public static void Main()
         {
-            MainAsync().GetAwaiter().GetResult();
-
-        }
-
-        private static async Task MainAsync()
-        {
             var botToken = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN");
             var channelText = Environment.GetEnvironmentVariable("CHANNEL_ID");
             if (string.IsNullOrWhiteSpace(botToken) || string.IsNullOrWhiteSpace(channelText))
@@ -46,9 +40,9 @@ namespace Ucu.Poo.RideShare
             */
 
             Console.WriteLine("Conectando con Discord...");
-            await discord.LoginAsync(botToken);
-            await discord.SendMessageAsync(channelId, "¡Hola desde C#!");
-            await discord.SendImageAsync(channelId, "bill.jpg", "Mira esta imagen");
+            discord.Login(botToken);
+            discord.SendMessage(channelId, "¡Hola desde C#!");
+            discord.SendImage(channelId, "bill.jpg", "Mira esta imagen");
             Console.WriteLine("Mensajes enviados.");
 
             /*

@@ -1,0 +1,29 @@
+using System.Collections;
+using Ucu.Poo.Discord;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 1. Instanciamos el cliente usando el namespace del paquete de la UCU
+        DiscordClient discord = new DiscordClient();
+
+        // 2. Creamos las listas para almacenar pasajeros y conductores
+        ArrayList pasajeros = new ArrayList();
+        ArrayList conductores = new ArrayList();
+
+        // 3. Crear y registrar un Pasajero
+        Passenger pasajero = new Passenger("Ana", "Gómez", "45678901", "https://i.imgur.com/example_passenger.jpg");
+        pasajeros.Add(pasajero);
+
+        // Publicar notificación en Discord
+        discord.PostNotification($"¡Bienvenido/a {pasajero.Name} {pasajero.Lastname} a UCURide!", pasajero.Foto);
+
+        // 4. Crear y registrar un Conductor Pool
+        Pool conductorPool = new Pool("Carlos", "Pérez", "12345678", "Viajo desde la zona sur.", "https://i.imgur.com/example_driver.jpg", 4);
+        conductores.Add(conductorPool);
+
+        // Publicar notificación en Discord
+        discord.PostNotification($"¡Bienvenido/a conductor {conductorPool.Name} {conductorPool.Lastname}!\nBio: {conductorPool.Bio}", conductorPool.Foto);
+    }
+}

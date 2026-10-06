@@ -1,0 +1,24 @@
+using DiscordPublisher;
+
+public class Driver : Person
+{
+    public double Calificacion { get; set; }
+    public string Bio { get; set; }
+    public string Foto { get; set; }
+
+    public Driver(string name, string lastname, string id, string bio, string foto) 
+        : base(name, lastname, id)
+    {
+        Bio = bio;
+        Foto = foto;
+        Calificacion = 5.0;
+    }
+
+    public virtual void Welcome()
+    {
+        DiscordClient client = new DiscordClient();
+        // Publica la foto con su bio y mensaje de bienvenida
+        string mensaje = $"¡Le damos la bienvenida al conductor {Name} {Lastname}!\nBio: {Bio}";
+        client.PostNotification(mensaje, Foto);
+    }
+}
